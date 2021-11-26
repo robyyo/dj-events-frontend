@@ -3,12 +3,15 @@ import Image from 'next/image';
 import styles from '@/styles/EventItem.module.css';
 
 function EventItem({ evt }) {
-  
   return (
     <div className={styles.event}>
       <div className={styles.img}>
         <Image
-          src={evt.image ? evt.image : 'image/event-default.png'}
+          src={
+            evt.image
+              ? evt.image.formats.thumbnail.url
+              : 'image/event-default.png'
+          }
           alt="event"
           width="170"
           height="100"
@@ -16,7 +19,7 @@ function EventItem({ evt }) {
       </div>
       <div className={styles.info}>
         <span>
-          {evt.date} @ {evt.time}
+          {new Date(evt.date).toLocaleDateString('en-US')} @ {evt.time}
         </span>
         <h3>{evt.name}</h3>
       </div>
