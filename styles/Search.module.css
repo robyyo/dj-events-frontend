@@ -1,0 +1,20 @@
+.search form {
+  display: flex;
+}
+
+.search input {
+  width: 250px;
+  height: 35px;
+  padding: 5px;
+  border: 1px #777 solid;
+  border-radius: 5px;
+}
+
+.search button {
+  background: none;
+  outline: none;
+  border: none;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
