@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { API_URL } from '@/config/index';
 import Layout from '@/components/Layout';
+import Modal from '@/components/Modal';
 import styles from '@/styles/Form.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Image from 'next/image';
@@ -20,10 +21,15 @@ export default function EditEvent({ evt }) {
     time: evt.time,
     description: evt.description,
   });
+
   const [imagePreview, setImagePreview] = useState(
     evt.image ? evt.image.formats.thumbnail.url : null
   );
+
+  const [showModal, setShowModal] = useState(false);
+
   const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const hasEmptyFields = Object.values(values).some(
@@ -59,10 +65,12 @@ export default function EditEvent({ evt }) {
       description: '',
     });
   };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
+
   return (
     <Layout title="Add New Event">
       <Link href="/events">
@@ -154,10 +162,23 @@ export default function EditEvent({ evt }) {
         </div>
       )}
       <div>
-        <button className="btn-secondary">
+        <button
+          className="btn-secondary"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
           <FaImage /> Set Image
         </button>
       </div>
+      <Modal
+        show={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+      >
+        IMAGE UPLOAD
+      </Modal>
     </Layout>
   );
 }
