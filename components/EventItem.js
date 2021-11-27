@@ -10,7 +10,7 @@ function EventItem({ evt }) {
           src={
             evt.image
               ? evt.image.formats.thumbnail.url
-              : 'image/event-default.png'
+              : 'https://res.cloudinary.com/rfinkley82/image/upload/v1637984553/event-default_dlycjt.png'
           }
           alt="event"
           width="170"
