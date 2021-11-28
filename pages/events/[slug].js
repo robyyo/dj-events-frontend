@@ -43,16 +43,34 @@ function EventPage({ evt }) {
         </span>
         <h1>{evt.name}</h1>
         <ToastContainer />
-        {evt.image && (
+        {/* Original code */
+        /* {evt.image && (
           <div className={styles.image}>
             <Image
-              src={evt.image.formats.medium.url}
+              src={
+                evt.image.formats.medium.url
+                  ? evt.image.formats.medium.url
+                  : 'https://res.cloudinary.com/rfinkley82/image/upload/v1638108852/medium_event_default_7a58e1e03c.png'
+              }
               width={960}
               height={600}
               alt="event"
             />
           </div>
-        )}
+        )} */}
+        {/* My code using a default event image if none is uploaded */}
+        <div className={styles.image}>
+          <Image
+            src={
+              evt.image
+                ? evt.image.formats.medium.url
+                : 'https://res.cloudinary.com/rfinkley82/image/upload/v1638108852/medium_event_default_7a58e1e03c.png'
+            }
+            width={960}
+            height={600}
+            alt="event"
+          />
+        </div>
         <h3>Performers:</h3>
         <p>{evt.performers}</p>
         <h3>Description:</h3>
