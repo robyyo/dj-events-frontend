@@ -1,12 +1,23 @@
 import { parseCookies } from '@/helpers/index.js';
 import Layout from '@/components/Layout';
+import DashboardEvent from '@/components/DashboardEvent';
 import { API_URL } from '@/config/index';
+import styles from '@/styles/Dashboard.module.css';
 
 function DashboardPage({ events }) {
-  console.log(events);
+  const deleteEvent = (id) => {
+    console.log(`Event Deleted: ${id}`);
+  };
+
   return (
-    <Layout>
-      <h1>Dashboard</h1>
+    <Layout title="User Dashboard">
+      <div className={styles.dash}>
+        <h1>Dashboard</h1>
+        <h3>My Events</h3>
+        {events.map((evt) => (
+          <DashboardEvent key={evt.id} evt={evt} handleDelete={deleteEvent} />
+        ))}
+      </div>
     </Layout>
   );
 }
