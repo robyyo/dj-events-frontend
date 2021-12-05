@@ -6,8 +6,9 @@ import Layout from '@/components/Layout';
 import styles from '@/styles/Form.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { parseCookies } from '@/helpers/index';
 
-export default function AddEvent() {
+export default function AddEvent({token}) {
   const [values, setValues] = useState({
     name: '',
     performers: '',
@@ -17,6 +18,7 @@ export default function AddEvent() {
     time: '',
     description: '',
   });
+
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,11 +33,16 @@ export default function AddEvent() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
 
     if (!res.ok) {
+      if (res.status === 403 || res.status === 401) {
+        toast.error('No token included');
+        return;
+      }
       toast.error('Something went wrong');
     } else {
       toast.success('Event successfully added');
@@ -43,15 +50,6 @@ export default function AddEvent() {
       router.push(`/events/${evt.slug}`);
     }
 
-    setValues({
-      name: '',
-      performers: '',
-      venue: '',
-      address: '',
-      date: '',
-      time: '',
-      description: '',
-    });
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -141,4 +139,13 @@ export default function AddEvent() {
       </form>
     </Layout>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const { token } = parseCookies(req);
+  return {
+    props: {
+      token,
+    },
+  };
 }
