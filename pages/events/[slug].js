@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import EventMap from '@/components/EventMap';
 import { API_URL } from '@/config/index';
 import styles from '@/styles/Event.module.css';
 import Link from 'next/link';
@@ -6,7 +7,6 @@ import Image from 'next/image';
 import 'react-toastify/dist/ReactToastify.css';
 
 function EventPage({ evt }) {
-
   return (
     <Layout>
       <div className={styles.event}>
@@ -48,6 +48,7 @@ function EventPage({ evt }) {
         <p>{evt.description}</p>
         <h3>Venue: {evt.venue}</h3>
         <p>{evt.address}</p>
+        <EventMap evt={evt} />
         <Link href="/">
           <a className="styles.back">{'<'}Go Back</a>
         </Link>
