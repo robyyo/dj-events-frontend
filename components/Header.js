@@ -47,6 +47,11 @@ function Header() {
           ) : (
             <>
               <li>
+                <Link href="/account/register">
+                  <a className="btn-primary btn-icon">Register</a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/account/login">
                   <a className="btn-secondary btn-icon">
                     <FaSignInAlt /> Login
