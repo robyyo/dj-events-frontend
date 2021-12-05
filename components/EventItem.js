@@ -10,7 +10,7 @@ function EventItem({ evt }) {
           src={
             evt.image
               ? evt.image.formats.thumbnail.url
-              : 'https://res.cloudinary.com/rfinkley82/image/upload/v1638108852/medium_event_default_7a58e1e03c.png'
+              : 'https://res.cloudinary.com/rfinkley82/image/upload/v1638728185/thumbnail_event_default_96d6959a2a.png'
           }
           alt="event"
           width="170"
