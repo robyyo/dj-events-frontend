@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaPencilAlt, FaTimes } from 'react-icons/fa';
+import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import styles from '@/styles/DashboardEvent.module.css';
 
 function DashboardEvent({ evt, handleDelete }) {
@@ -12,7 +12,7 @@ function DashboardEvent({ evt, handleDelete }) {
       </h4>
       <Link href={`/events/edit/${evt.id}`}>
         <a className={styles.edit}>
-          <FaPencilAlt /> <span>Edit Event</span>
+          <FaPencilAlt />
         </a>
       </Link>
       <a
@@ -22,7 +22,7 @@ function DashboardEvent({ evt, handleDelete }) {
           handleDelete(evt.id);
         }}
       >
-        <FaTimes /> <span>Edit Event</span>
+        <FaTrash />
       </a>
     </div>
   );
