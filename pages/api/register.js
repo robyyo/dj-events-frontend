@@ -9,6 +9,8 @@ export default async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':
+          'https://robyyodjeventsfrontend-9dd399d41-robyyo.vercel.app',
       },
       body: JSON.stringify({
         username,
